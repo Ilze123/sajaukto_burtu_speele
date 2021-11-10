@@ -1,0 +1,38 @@
+.Laukums
+{
+    background: rgb(224, 217, 225);
+
+}
+h1
+{
+    text-align: center;
+    background: rgb(166, 141, 236);
+}
+
+ul{
+    text-align: center;
+}
+li
+{
+display: inline-block;
+
+}
+
+.game
+
+{
+    width: 320px;
+    background: darkblue;
+    text-align: center;
+
+}
+
+.bloks
+{
+   
+    display: inline-block; 
+   background: rgb(195, 191, 211);
+   width: 100px;
+   height: 100px;
+   border: 1px solid rgba(39, 31, 88, 0.308);
+}
