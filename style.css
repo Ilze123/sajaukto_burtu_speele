@@ -21,7 +21,7 @@ display: inline-block;
 .game
 
 {
-    width: 320px;
+    width: 400px;
     background: darkblue;
     text-align: center;
 
@@ -32,7 +32,7 @@ display: inline-block;
    
     display: inline-block; 
    background: rgb(195, 191, 211);
-   width: 100px;
-   height: 100px;
+   width: 50px;
+   height: 50px;
    border: 1px solid rgba(39, 31, 88, 0.308);
 }
