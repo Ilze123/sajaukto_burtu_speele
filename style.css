@@ -1,12 +1,17 @@
 .Laukums
 {
-    background: rgb(224, 217, 225);
-
+    background: rgb(192, 137, 199);
+    border-style: double;
+}
+.header {
+    background-color: #eca5a5;
+    padding: 20px;
+    text-align: center;
 }
 h1
 {
     text-align: center;
-    background: rgb(166, 141, 236);
+    font-size: 45px;
 }
 
 ul{
@@ -18,13 +23,32 @@ display: inline-block;
 
 }
 
-.game
+.topnav a {
+    float: left;
+    display: block;
+    color: #f8f1f1;
+    border-style: double;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 20px;
+    background-color: #8f4343;
+  }
 
-{
-    width: 400px;
-    background: darkblue;
+  p{
+      text-align: center;
+   
+  }
+
+  #noteikumi {
+    border-style: double;
+  }
+#spele{
+    border-style: double;
+}
+
+#tops{
+    border-style: double; 
     text-align: center;
-
 }
 
 .bloks
@@ -32,7 +56,10 @@ display: inline-block;
    
     display: inline-block; 
    background: rgb(195, 191, 211);
-   width: 50px;
-   height: 50px;
-   border: 1px solid rgba(39, 31, 88, 0.308);
+   width: 90px;
+   height: 90px;
+   border: 2px solid rgba(39, 31, 88, 0.308);
+}
+.ievaddati{
+    text-align: right;
 }
