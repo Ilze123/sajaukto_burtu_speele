@@ -11,36 +11,67 @@
     <div class="Laukums">
         <div class="header">
             <h1>
-                <a href="index.html" > 
-                  Sajaukto burtu spēle  
-                </a>
-                
+                 Burtu salikšanas spēle  
+                            
             </h1>
-            <ul>
-                   <li><a href="spele.html">Spēle</a></li> 
-                   <li> <a href="papildspele.html">Pielāgota spēle</a> </li> 
-                   <li> <a href="top.html">Tops</a></li> 
-                   <li> <a href="par_autoru.html">Par autoru</a></li> 
-
-
-
-
+            <ul class="topnav">
+                   <li><a  class="active" href="#noteikumi">Spēles noteikumi</a></li> 
+                   <li> <a href="#spele">Spēle</a> </li> 
+                   <li> <a href="#tops">Tops</a></li> 
+                   <li> <a href="#par_autoru">Par autoru</a></li> 
             </ul>
 
         </div><!--beidzas header-->
-        <div class="saturs">
-            <p>Jums doti burti no kuriem jāizveido vārds!</p>
-
-            <div class="game">
-                <div class="bloks">D</div>
-                <div class="bloks">A</div>
-                <div class="bloks">T</div>
-                <div class="bloks">O</div>
-                <div class="bloks">R</div>
+        <div class="saturs" id="noteikumi">
+            <p>Spēles noteikumi</p>
+                <p>Lai sāktu spēli, jāievada savs vārds un jāizvēlas burtu skaits vārdiem.</p>
+                <p>Vienas minūtes laikā jāizveido pēc iespējas vairāk vārdu ar peli burtu kvadrātiņus ievelkot pareizajā secībā tukšajos lauciņos.</p>
+                <p>Spēlē tiek izmantoti tikai lietvārdi vienskaitlī.</p>
+                <p>Jo vairāk burtu vārdā, jo vairāk punktu pienākas spēlētājam.</p>
+        </div>
+        <div class="saturs" id="spele">
+                <div class="bloks"> </div>
+                <div class="bloks"> </div>
+                <div class="bloks"> </div>
+                <div class="bloks"> </div>
+                <div class="bloks"> </div>
+                <div class="bloks">C</div>
+                <div class="bloks">I</div>
+                <div class="bloks">K</div>
+                <div class="bloks">L</div>
                 <div class="bloks">S</div>
+
+<br>
+        <div class="ievaddati">
+            Vārds: <input id="vards"/>
+            <br>
+            Burtu skaits: 
+            <select id="burtu_skaits">
+                <option value=5>5</option>
+                <option value=6>6</option>
+                <option value=7>7</option>
+                <option value=8>8</option>
+                <option value=9>9</option>
+                <option value=10>10</option>
+            </select>
+            <br/>
+
+            
             </div>
+        
+            <button onclick="saktSpeli()">
+                <h3>Sākt!</h3>           
+             </button>
+        </div>
+        <div class="saturs" id="tops">
+            <h2>Rezultātu TOPS</h2>
+            <p>Šeit būs uzvarētāju saraksts</p>
+        </div>
 
-
+        <div class="saturs" id="par_autoru">
+            <p>Par autoru:</p>
+                <p>Spēli izveidoja Start(IT) kursu dalībniece 2021.gadā kā mācību projektu</p>
+        </div>
         </div><!--beidzas saturs-->
 
 
