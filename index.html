@@ -37,7 +37,8 @@
                 <p>Jo vairāk burtu vārdā, jo vairāk punktu pienākas spēlētājam.</p>
         </div>
         <div id="spele" class="saturs" style="display:none">
-                <div class="bloks"> </div>
+                
+            <div class="bloks"> </div>
                 <div class="bloks"> </div>
                 <div class="bloks"> </div>
                 <div class="bloks"> </div>
@@ -59,16 +60,14 @@
                 <option value=7>7</option>
                 <option value=8>8</option>
                 <option value=9>9</option>
-                <option value=10>10</option>
             </select>
             <br/>
 
             
             </div>
-        
-            <button onclick="saktSpeli()">
-                <h3>Sākt!</h3>           
-             </button>
+        <div class="nav"></div>
+            <button onclick="saktSpeli()"><h3>Sākt!</h3></button>
+        <div id="skaits"></div>
         </div>
         <div id="tops" class="saturs" style="display:none">
             <h2>Rezultātu TOPS</h2>
@@ -83,6 +82,8 @@
 
 
     </div><!--beidzas Laukums-->
+    
+
 <script>
 
 
@@ -98,6 +99,7 @@
       document.getElementById(iedalijums).style.display = "block";  
     }
     </script>
+    
     
 </body>
 </html>
