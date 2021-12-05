@@ -14,22 +14,29 @@
                  Burtu salikšanas spēle  
                             
             </h1>
-            <ul class="topnav">
-                   <li><a  class="active" href="#noteikumi">Spēles noteikumi</a></li> 
-                   <li> <a href="#spele">Spēle</a> </li> 
-                   <li> <a href="#tops">Tops</a></li> 
-                   <li> <a href="#par_autoru">Par autoru</a></li> 
-            </ul>
+
+
+            <div class="top-bar top-black">
+                <button class="top-bar-item top-button" onclick="atver('noteikumi')">Spēles noteikumi</button>
+                <button class="top-bar-item top-button" onclick="atver('spele')">Spēle</button>
+                <button class="top-bar-item top-button" onclick="atver('tops')">Tops</button>
+                <button class="top-bar-item top-button" onclick="atver('par_autoru')">Par autoru</button>
+              </div>
+              
+            
+                       
+            
+
 
         </div><!--beidzas header-->
-        <div class="saturs" id="noteikumi">
+        <div  id="noteikumi" class="saturs">
             <p>Spēles noteikumi</p>
                 <p>Lai sāktu spēli, jāievada savs vārds un jāizvēlas burtu skaits vārdiem.</p>
-                <p>Vienas minūtes laikā jāizveido pēc iespējas vairāk vārdu ar peli burtu kvadrātiņus ievelkot pareizajā secībā tukšajos lauciņos.</p>
+                <p>Vienas minūtes laikā jāizveido pēc iespējas vairāk vārdu ar peli klikšķinot uz burtu kvadrātiņiem.</p>
                 <p>Spēlē tiek izmantoti tikai lietvārdi vienskaitlī.</p>
                 <p>Jo vairāk burtu vārdā, jo vairāk punktu pienākas spēlētājam.</p>
         </div>
-        <div class="saturs" id="spele">
+        <div id="spele" class="saturs" style="display:none">
                 <div class="bloks"> </div>
                 <div class="bloks"> </div>
                 <div class="bloks"> </div>
@@ -63,18 +70,34 @@
                 <h3>Sākt!</h3>           
              </button>
         </div>
-        <div class="saturs" id="tops">
+        <div id="tops" class="saturs" style="display:none">
             <h2>Rezultātu TOPS</h2>
             <p>Šeit būs uzvarētāju saraksts</p>
         </div>
 
-        <div class="saturs" id="par_autoru">
+        <div id="par_autoru" class="saturs" style="display:none">
             <p>Par autoru:</p>
                 <p>Spēli izveidoja Start(IT) kursu dalībniece 2021.gadā kā mācību projektu</p>
         </div>
         </div><!--beidzas saturs-->
 
 
-    </div><!--beidzas Laukums
+    </div><!--beidzas Laukums-->
+<script>
+
+
+    
+</script>
+<script>
+    function atver(iedalijums) {
+      var i;
+      var x = document.getElementsByClassName("saturs");
+      for (i = 0; i < x.length; i++) {
+        x[i].style.display = "none";  
+      }
+      document.getElementById(iedalijums).style.display = "block";  
+    }
+    </script>
+    
 </body>
 </html>
