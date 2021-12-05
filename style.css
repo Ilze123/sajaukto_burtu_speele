@@ -22,20 +22,20 @@ li
 display: inline-block;
 
 }
-
-.topnav a {
-    float: left;
+.top-bar{
+    float: center;
     display: block;
     color: #f8f1f1;
     border-style: double;
     padding: 14px 16px;
     text-decoration: none;
-    font-size: 20px;
-    background-color: #8f4343;
-  }
+   background-color: #8f4343;
+}
+
 
   p{
       text-align: center;
+      font-size: 16px;
    
   }
 
