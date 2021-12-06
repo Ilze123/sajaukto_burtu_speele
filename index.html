@@ -28,7 +28,7 @@
             
 
 
-        </div><!--beidzas header-->
+       </div><!--beidzas header-->
         <div  id="noteikumi" class="saturs">
             <p>Spēles noteikumi</p>
                 <p>Lai sāktu spēli, jāievada savs vārds un jāizvēlas burtu skaits vārdiem.</p>
@@ -37,18 +37,9 @@
                 <p>Jo vairāk burtu vārdā, jo vairāk punktu pienākas spēlētājam.</p>
         </div>
         <div id="spele" class="saturs" style="display:none">
-                
-            <div class="bloks"> </div>
-                <div class="bloks"> </div>
-                <div class="bloks"> </div>
-                <div class="bloks"> </div>
-                <div class="bloks"> </div>
-                <div class="bloks">C</div>
-                <div class="bloks">I</div>
-                <div class="bloks">K</div>
-                <div class="bloks">L</div>
-                <div class="bloks">S</div>
-
+            <label style="margin:20px" id="laiks">Laiks = 60 s</label>
+            <label style="margin:20px" id="punkti">Punkti = 0</label>
+           
 <br>
         <div class="ievaddati">
             Vārds: <input id="vards"/>
@@ -62,12 +53,13 @@
                 <option value=9>9</option>
             </select>
             <br/>
-
-            
+           
             </div>
         <div class="nav"></div>
-            <button onclick="saktSpeli()"><h3>Sākt!</h3></button>
+         
+        <button onclick="saktSpeli(burtu_skaits.value)"><h3>Sākt!</h3></button>
         <div id="skaits"></div>
+        
         </div>
         <div id="tops" class="saturs" style="display:none">
             <h2>Rezultātu TOPS</h2>
@@ -84,11 +76,7 @@
     </div><!--beidzas Laukums-->
     
 
-<script>
 
-
-    
-</script>
 <script>
     function atver(iedalijums) {
       var i;
@@ -99,7 +87,32 @@
       document.getElementById(iedalijums).style.display = "block";  
     }
     </script>
+  <script>
+    let n=document.getElementById("burtu_skaits")
+   
+        setInterval(function(){
+           
+        },1000);
+               
+        function saktSpeli(n){
+          let forma = document.createElement("forma");
+          for(let r=0;r<2;r++){
+            let rinda=document.createElement("div");
+            for(let k=0;k<n;k++){
+              let poga = document.createElement("input");
+              poga.type="button"
+              poga.value= " ";
+              rinda.appendChild(poga);
+              poga.onclick=function(){               
+              }
+            }
+            forma.appendChild(rinda);
+          }
+         document.body.appendChild(forma);
+        }
     
-    
+</script>               
+           
+   
 </body>
 </html>
