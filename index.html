@@ -87,9 +87,30 @@
       }
       document.getElementById(iedalijums).style.display = "block";  
     }
-    </script>
-  <script>
-    let n=document.getElementById("burtu_skaits")
+  </script>
+<script>
+  function rand_b (vards){
+    for (let i=0; i<10; i++){
+      let rand2 = Math.floor(Math.random() * vards.length);
+      vards=vards.substring(rand2)+vards.substring(0,rand2);
+    }
+    return vards;
+  }
+var alf5=["skola", "cikls", "rinda", "prece", "klase"]
+fLen = alf5.length;
+text = "<ul>";
+  for (i = 0; i<fLen; i++){
+    let rand1 = Math.floor(Math.random()*alf.length);
+    text += "<li>"+alf5[rand1] + "<li>";
+  }
+
+text += "</ul>";
+document.getElementById("forma").innerHTML = text;
+
+</script>           
+
+<script>
+    let n=document.getElementById("burtu_skaits");
    
         setInterval(function(){
            
@@ -104,12 +125,16 @@
           forma.setAttribute("id","forma1")
           for(let r=0;r<2;r++){
             let rinda=document.createElement("div");
-            for(let k=0;k<n;k++){
+            //for(let k=0;k<n;k++){
+              for(let i=0;i<n; i++){
               let poga = document.createElement("input");
               poga.type="button"
-              poga.value= " ";
+             //poga.setAttribute("id","poga"+i)
+              //poga.innerHTML=vards.charAt(i)   
+              poga.value= Element.innerHTML = alf5;
               rinda.appendChild(poga);
-              poga.onclick=function(){               
+              poga.onclick=function(){
+                            
               }
             }
             forma.appendChild(rinda);
@@ -117,8 +142,8 @@
          document.getElementById("spele").appendChild(forma);
         }
     
-</script>               
-           
+</script> 
+
    
 </body>
 </html>
