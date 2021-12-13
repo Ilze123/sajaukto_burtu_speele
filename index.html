@@ -88,35 +88,18 @@
       document.getElementById(iedalijums).style.display = "block";  
     }
   </script>
-<script>
-  function rand_b (vards){
-    for (let i=0; i<10; i++){
-      let rand2 = Math.floor(Math.random() * vards.length);
-      vards=vards.substring(rand2)+vards.substring(0,rand2);
-    }
-    return vards;
-  }
-var alf5=["skola", "cikls", "rinda", "prece", "klase"]
-fLen = alf5.length;
-text = "<ul>";
-  for (i = 0; i<fLen; i++){
-    let rand1 = Math.floor(Math.random()*alf.length);
-    text += "<li>"+alf5[rand1] + "<li>";
-  }
-
-text += "</ul>";
-document.getElementById("forma").innerHTML = text;
-
-</script>           
 
 <script>
-    let n=document.getElementById("burtu_skaits");
-   
-        setInterval(function(){
-           
-        },1000);
-               
-        function saktSpeli(n){
+  let n=document.getElementById("burtu_skaits");
+ 
+      setInterval(function(){
+         
+      },1000);
+             
+          
+</script> 
+<script>
+  function saktSpeli(n){
           if (document.getElementById("forma1")!=null){
             document.getElementById("spele").removeChild(document.getElementById("spele").lastChild);
 
@@ -131,7 +114,7 @@ document.getElementById("forma").innerHTML = text;
               poga.type="button"
              //poga.setAttribute("id","poga"+i)
               //poga.innerHTML=vards.charAt(i)   
-              poga.value= Element.innerHTML = alf5;
+              poga.value = Element.innerHTML = text;
               rinda.appendChild(poga);
               poga.onclick=function(){
                             
@@ -141,8 +124,28 @@ document.getElementById("forma").innerHTML = text;
           }
          document.getElementById("spele").appendChild(forma);
         }
-    
-</script> 
+
+  function rand_b (vards){
+    for (let i=0; i<10; i++){
+      let rand2 = Math.floor(Math.random() * vards.length);
+      vards=vards.substring(rand2)+vards.substring(0,rand2);
+    }
+    return vards;
+  }
+
+
+var alf5 = ["skola", "cikls", "rinda", "prece", "klase"];
+fLen = alf5.length;
+text = "<ul>";
+    var rand2 = Math.floor(Math.random() * alf5.length);
+    text += "<li>" + rand_b(alf5[rand2]) + "</li>";
+poga(rand_b(alf5[rand2]));
+ text += "</ul>";
+document.getElementById("forma").innerHTML = text;
+
+</script>           
+
+
 
    
 </body>
