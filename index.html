@@ -43,7 +43,7 @@
 <br>
 
         <div class="ievaddati">
-            Vārds: <input id="vards"/>
+            Vārds: <input id="vaards"/>
             <br>
             Burtu skaits: 
             <select id="burtu_skaits">
@@ -96,10 +96,31 @@
          
       },1000);
              
-          
-</script> 
-<script>
+      function rand_b (vards){
+    for (let i=0; i<10; i++){
+      let rand1 = Math.floor(Math.random() * vards.length);
+      vards=vards.substring(rand1)+vards.substring(0,rand1);
+    }
+    return vards;
+  }
+
+
+var alf5 = ["skola", "cikls", "rinda", "prece", "klase"];
+ fLen = alf5.length;
+
+
+  //for (i=0; i<fLen; i++){
+    
+//}
+
+
+//document.getElementById("spele").innerHTML = vards;
+       
+
   function saktSpeli(n){
+    let klik=0;
+    var rand1 = Math.floor(Math.random() * alf5.length);
+ let sajauktais = rand_b(alf5[rand1]);
           if (document.getElementById("forma1")!=null){
             document.getElementById("spele").removeChild(document.getElementById("spele").lastChild);
 
@@ -112,12 +133,30 @@
               for(let i=0;i<n; i++){
               let poga = document.createElement("input");
               poga.type="button"
-             //poga.setAttribute("id","poga"+i)
+             poga.setAttribute("id",("r"+r)+i);
               //poga.innerHTML=vards.charAt(i)   
-              poga.value = Element.innerHTML = text;
+             if (r==0) {
+               poga.value = sajauktais.charAt(i);
+             }
               rinda.appendChild(poga);
               poga.onclick=function(){
-                            
+                let pogaid = poga.id;
+                let rinda = pogaid.charAt(1);
+                if (rinda == 0) {
+
+                  document.getElementById("r1"+klik).title = poga.id;
+                document.getElementById("r1"+klik).value = poga.value;
+               poga.disabled = true;
+               //poga.style.display = "none"
+                klik++;
+                }
+                else {
+                  klik--;
+                  //document.getElementById("r0"+klik).value = poga.value; 
+                  //poga.disabled = false;
+                 
+                  document.getElementById(poga.title).disabled = false;
+                }
               }
             }
             forma.appendChild(rinda);
@@ -125,24 +164,7 @@
          document.getElementById("spele").appendChild(forma);
         }
 
-  function rand_b (vards){
-    for (let i=0; i<10; i++){
-      let rand2 = Math.floor(Math.random() * vards.length);
-      vards=vards.substring(rand2)+vards.substring(0,rand2);
-    }
-    return vards;
-  }
-
-
-var alf5 = ["skola", "cikls", "rinda", "prece", "klase"];
-fLen = alf5.length;
-text = "<ul>";
-    var rand2 = Math.floor(Math.random() * alf5.length);
-    text += "<li>" + rand_b(alf5[rand2]) + "</li>";
-poga(rand_b(alf5[rand2]));
- text += "</ul>";
-document.getElementById("forma").innerHTML = text;
-
+  
 </script>           
 
 
