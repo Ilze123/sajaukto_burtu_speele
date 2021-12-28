@@ -87,10 +87,8 @@
       }
       document.getElementById(iedalijums).style.display = "block";  
     }
-  </script>
 
-<script>
-  let n=document.getElementById("burtu_skaits");
+    let n=document.getElementById("burtu_skaits");
  
       setInterval(function(){
          
@@ -98,14 +96,17 @@
              
       function rand_b (vards){
     for (let i=0; i<10; i++){
+      for(let j = 0; j < 10; j++){
       let rand1 = Math.floor(Math.random() * vards.length);
       vards=vards.substring(rand1)+vards.substring(0,rand1);
     }
+  }
     return vards;
   }
 
 
 var alf5 = ["skola", "cikls", "rinda", "prece", "klase"];
+//var alf5 = [["skola", "cikls", "rinda", "prece", "klase"],["dators", "masīvs", "domēns", "gaisma","parole"],["grāmata", "laukums", "zīmulis", "salvete", "cilvēks"],["datorika", "monitors","funkcija", "saraksts", "gredzens"],["internets", "procesors", "procedūra", "mikrofons", "programma"]];
  fLen = alf5.length;
 
 
@@ -128,9 +129,11 @@ var alf5 = ["skola", "cikls", "rinda", "prece", "klase"];
           let forma = document.createElement("forma");
           forma.setAttribute("id","forma1")
           for(let r=0;r<2;r++){
+            
             let rinda=document.createElement("div");
             //for(let k=0;k<n;k++){
               for(let i=0;i<n; i++){
+                //for(let j = 0; j < 5; j++){
               let poga = document.createElement("input");
               poga.type="button"
              poga.setAttribute("id",("r"+r)+i);
@@ -138,6 +141,7 @@ var alf5 = ["skola", "cikls", "rinda", "prece", "klase"];
              if (r==0) {
                poga.value = sajauktais.charAt(i);
              }
+             
               rinda.appendChild(poga);
               poga.onclick=function(){
                 let pogaid = poga.id;
@@ -150,6 +154,7 @@ var alf5 = ["skola", "cikls", "rinda", "prece", "klase"];
                //poga.style.display = "none"
                 klik++;
                 }
+              
                 else {
                   klik--;
                   //document.getElementById("r0"+klik).value = poga.value; 
@@ -158,8 +163,11 @@ var alf5 = ["skola", "cikls", "rinda", "prece", "klase"];
                   document.getElementById(poga.title).disabled = false;
                 }
               }
+            
             }
+            
             forma.appendChild(rinda);
+          
           }
          document.getElementById("spele").appendChild(forma);
         }
