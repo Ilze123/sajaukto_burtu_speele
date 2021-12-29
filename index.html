@@ -106,19 +106,15 @@
 
 
 var alf5 = ["skola", "cikls", "rinda", "prece", "klase"];
+var alf6 = ["dators", "masīvs", "domēns", "gaisma","parole"];
+var alf7 = ["grāmata", "laukums", "zīmulis", "salvete", "cilvēks"];
+var alf8 = ["datorika", "monitors","funkcija", "saraksts", "gredzens"];
+var alf9 =["internets", "procesors", "procedūra", "mikrofons", "programma"];
 //var alf5 = [["skola", "cikls", "rinda", "prece", "klase"],["dators", "masīvs", "domēns", "gaisma","parole"],["grāmata", "laukums", "zīmulis", "salvete", "cilvēks"],["datorika", "monitors","funkcija", "saraksts", "gredzens"],["internets", "procesors", "procedūra", "mikrofons", "programma"]];
- fLen = alf5.length;
-
-
-  //for (i=0; i<fLen; i++){
-    
-//}
-
-
-//document.getElementById("spele").innerHTML = vards;
-       
+ 
 
   function saktSpeli(n){
+    if (n==5){
     let klik=0;
     var rand1 = Math.floor(Math.random() * alf5.length);
  let sajauktais = rand_b(alf5[rand1]);
@@ -171,6 +167,223 @@ var alf5 = ["skola", "cikls", "rinda", "prece", "klase"];
           }
          document.getElementById("spele").appendChild(forma);
         }
+
+        if (n==6){
+    let klik=0;
+    var rand1 = Math.floor(Math.random() * alf6.length);
+ let sajauktais = rand_b(alf6[rand1]);
+          if (document.getElementById("forma1")!=null){
+            document.getElementById("spele").removeChild(document.getElementById("spele").lastChild);
+
+          }
+          let forma = document.createElement("forma");
+          forma.setAttribute("id","forma1")
+          for(let r=0;r<2;r++){
+            
+            let rinda=document.createElement("div");
+            //for(let k=0;k<n;k++){
+              for(let i=0;i<n; i++){
+                //for(let j = 0; j < 5; j++){
+              let poga = document.createElement("input");
+              poga.type="button"
+             poga.setAttribute("id",("r"+r)+i);
+              //poga.innerHTML=vards.charAt(i)   
+             if (r==0) {
+               poga.value = sajauktais.charAt(i);
+             }
+             
+              rinda.appendChild(poga);
+              poga.onclick=function(){
+                let pogaid = poga.id;
+                let rinda = pogaid.charAt(1);
+                if (rinda == 0) {
+
+                  document.getElementById("r1"+klik).title = poga.id;
+                document.getElementById("r1"+klik).value = poga.value;
+               poga.disabled = true;
+               //poga.style.display = "none"
+                klik++;
+                }
+              
+                else {
+                  klik--;
+                  //document.getElementById("r0"+klik).value = poga.value; 
+                  //poga.disabled = false;
+                 
+                  document.getElementById(poga.title).disabled = false;
+                }
+              }
+            
+            }
+            
+            forma.appendChild(rinda);
+          
+          }
+         document.getElementById("spele").appendChild(forma);
+        }
+
+        if (n==7){
+    let klik=0;
+    var rand1 = Math.floor(Math.random() * alf7.length);
+ let sajauktais = rand_b(alf7[rand1]);
+          if (document.getElementById("forma1")!=null){
+            document.getElementById("spele").removeChild(document.getElementById("spele").lastChild);
+
+          }
+          let forma = document.createElement("forma");
+          forma.setAttribute("id","forma1")
+          for(let r=0;r<2;r++){
+            
+            let rinda=document.createElement("div");
+            //for(let k=0;k<n;k++){
+              for(let i=0;i<n; i++){
+                //for(let j = 0; j < 5; j++){
+              let poga = document.createElement("input");
+              poga.type="button"
+             poga.setAttribute("id",("r"+r)+i);
+              //poga.innerHTML=vards.charAt(i)   
+             if (r==0) {
+               poga.value = sajauktais.charAt(i);
+             }
+             
+              rinda.appendChild(poga);
+              poga.onclick=function(){
+                let pogaid = poga.id;
+                let rinda = pogaid.charAt(1);
+                if (rinda == 0) {
+
+                  document.getElementById("r1"+klik).title = poga.id;
+                document.getElementById("r1"+klik).value = poga.value;
+               poga.disabled = true;
+               //poga.style.display = "none"
+                klik++;
+                }
+              
+                else {
+                  klik--;
+                  //document.getElementById("r0"+klik).value = poga.value; 
+                  //poga.disabled = false;
+                 
+                  document.getElementById(poga.title).disabled = false;
+                }
+              }
+            
+            }
+            
+            forma.appendChild(rinda);
+          
+          }
+         document.getElementById("spele").appendChild(forma);
+        }
+
+        if (n==8){
+    let klik=0;
+    var rand1 = Math.floor(Math.random() * alf8.length);
+ let sajauktais = rand_b(alf8[rand1]);
+          if (document.getElementById("forma1")!=null){
+            document.getElementById("spele").removeChild(document.getElementById("spele").lastChild);
+
+          }
+          let forma = document.createElement("forma");
+          forma.setAttribute("id","forma1")
+          for(let r=0;r<2;r++){
+            
+            let rinda=document.createElement("div");
+            //for(let k=0;k<n;k++){
+              for(let i=0;i<n; i++){
+                //for(let j = 0; j < 5; j++){
+              let poga = document.createElement("input");
+              poga.type="button"
+             poga.setAttribute("id",("r"+r)+i);
+              //poga.innerHTML=vards.charAt(i)   
+             if (r==0) {
+               poga.value = sajauktais.charAt(i);
+             }
+             
+              rinda.appendChild(poga);
+              poga.onclick=function(){
+                let pogaid = poga.id;
+                let rinda = pogaid.charAt(1);
+                if (rinda == 0) {
+
+                  document.getElementById("r1"+klik).title = poga.id;
+                document.getElementById("r1"+klik).value = poga.value;
+               poga.disabled = true;
+               //poga.style.display = "none"
+                klik++;
+                }
+              
+                else {
+                  klik--;
+                  //document.getElementById("r0"+klik).value = poga.value; 
+                  //poga.disabled = false;
+                 
+                  document.getElementById(poga.title).disabled = false;
+                }
+              }
+            
+            }
+            
+            forma.appendChild(rinda);
+          
+          }
+         document.getElementById("spele").appendChild(forma);
+        }
+
+        if (n==9){
+    let klik=0;
+    var rand1 = Math.floor(Math.random() * alf9.length);
+ let sajauktais = rand_b(alf9[rand1]);
+          if (document.getElementById("forma1")!=null){
+            document.getElementById("spele").removeChild(document.getElementById("spele").lastChild);
+
+          }
+          let forma = document.createElement("forma");
+          forma.setAttribute("id","forma1")
+          for(let r=0;r<2;r++){
+            
+            let rinda=document.createElement("div");
+            //for(let k=0;k<n;k++){
+              for(let i=0;i<n; i++){
+                //for(let j = 0; j < 5; j++){
+              let poga = document.createElement("input");
+              poga.type="button"
+             poga.setAttribute("id",("r"+r)+i);
+              //poga.innerHTML=vards.charAt(i)   
+             if (r==0) {
+               poga.value = sajauktais.charAt(i);
+             }
+             
+              rinda.appendChild(poga);
+              poga.onclick=function(){
+                let pogaid = poga.id;
+                let rinda = pogaid.charAt(1);
+                if (rinda == 0) {
+
+                  document.getElementById("r1"+klik).title = poga.id;
+                document.getElementById("r1"+klik).value = poga.value;
+               poga.disabled = true;
+               //poga.style.display = "none"
+                klik++;
+                }
+              
+                else {
+                  klik--;
+                  //document.getElementById("r0"+klik).value = poga.value; 
+                  //poga.disabled = false;
+                 
+                  document.getElementById(poga.title).disabled = false;
+                }
+              }
+            
+            }
+            
+            forma.appendChild(rinda);
+          
+          }
+         document.getElementById("spele").appendChild(forma);
+        }
+      }
 
   
 </script>           
