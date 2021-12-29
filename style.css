@@ -8,6 +8,9 @@
     padding: 20px;
     text-align: center;
 }
+body {
+    background: #923c3c;  
+}
 h1
 {
     text-align: center;
