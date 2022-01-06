@@ -1,395 +1,173 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link href="style.css" rel="stylesheet"/>
+  <link href="style.css" rel="stylesheet"/>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sajaukto burtu spēle</title>
 </head>
 <body>
-    <div class="Laukums">
-        <div class="header">
-            <h1>
-                 Vārdu salikšanas spēle  
-                            
-            </h1>
-
-
-            <div class="top-bar top-black">
-                <button class="top-bar-item top-button" onclick="atver('noteikumi')">Spēles noteikumi</button>
-                <button class="top-bar-item top-button" onclick="atver('spele')">Spēle</button>
-                <button class="top-bar-item top-button" onclick="atver('tops')">Tops</button>
-                <button class="top-bar-item top-button" onclick="atver('par_autoru')">Par autoru</button>
-              </div>
-              
-            
-                       
-            
-
-
-       </div><!--beidzas header-->
-        <div  id="noteikumi" class="saturs">
-            <p>Spēles noteikumi</p>
-                <p>Lai sāktu spēli, jāievada savs vārds un jāizvēlas burtu skaits vārdiem.</p>
+    <div class="wrapper">
+      <div class="header">
+        <div>
+            <div>
+                <h1>Sajaukto burtu spēle</h1>    
+            </div>
+            <div class="menu">
+                <button class="poga" onclick="atvert('noteikumi')">Noteikumi</button>
+                <button class="poga" onclick="atvert('sakt_speli')">Sākt spēli</button>
+                <button class="poga" onclick="atvert('top')">Spēlētāju TOP</button>
+                <button class="poga" onclick="atvert('autors')">Par autoru</button>
+            </div>
+          </div>
+        </div>
+        <hr/>
+        <div id="noteikumi" class="nodala">
+            <h2>Spēles noteikumi</h2>
+            <p>Lai sāktu spēli, jāievada savs vārds un jāizvēlas burtu skaits vārdiem.</p>
                 <p>Vienas minūtes laikā jāizveido pēc iespējas vairāk vārdu ar peli klikšķinot uz burtu kvadrātiņiem.</p>
                 <p>Spēlē tiek izmantoti tikai lietvārdi vienskaitlī.</p>
                 <p>Jo vairāk burtu vārdā, jo vairāk punktu pienākas spēlētājam.</p>
-        </div>
-        <div id="spele" class="saturs" style="display:none">
-            <label style="margin:20px" id="laiks">Laiks = 60 s</label>
-            <label style="margin:20px" id="punkti">Punkti = 0</label>
-           
-<br>
 
-        <div class="ievaddati">
-            Vārds: <input id="vaards"/>
-            <br>
-            Burtu skaits: 
-            <select id="burtu_skaits">
-                <option value=5>5</option>
-                <option value=6>6</option>
-                <option value=7>7</option>
-                <option value=8>8</option>
-                <option value=9>9</option>
-            </select>
-            <br/>
-           
+        </div>
+        <hr/>
+
+        <div id="sakt_speli" class="nodala" style="display:none">
+            <h2>Sākt spēli</h2>
+            <p>Ievadi savu vārdu un cik burtus gribi minēt!</p>
+            <form>
+            <input id="speletajs">
+            <label for="speletajs">Spēlētāja vārds</label>
+            <input id="skaits" type="number" min="4" max="6">
+            <label for="skaits">Burtu skaits</label>
+            <input type="button" onclick="sakums(skaits.value)" value="Sākt spēli!">
+            <div id="spele">
+                <div id="laiks"> Spēles laiks 40 s</div>
+                <div id="punkti"> Punkti = 0 </div>
+                <div id="vards"></div>
+                <input id="atbilde" style="display:none">
+                <input id="mini" onclick="parbaude(atbilde.value)" value="Pārbaudīt vārdu" style="display:none">
             </div>
-      
-         
-        <button onclick="saktSpeli(burtu_skaits.value)"><h3>Sākt!</h3></button>
-        <div id="skaits"></div>
-        
+            </form>
         </div>
-        <div id="tops" class="saturs" style="display:none">
+        <hr/>
+
+        <div  id="top" class="nodala" style="display:none">
             <h2>Rezultātu TOPS</h2>
-            <p>Šeit būs uzvarētāju saraksts</p>
+            <table id="tabula">
+                <tr><th>Spēlētājs</th><th>Rezultāts</th></tr>  
+            </table>
+         
         </div>
+        <hr/>
 
-        <div id="par_autoru" class="saturs" style="display:none">
-            <p>Par autoru:</p>
-                <p>Spēli izveidoja Start(IT) kursu dalībniece 2021.gadā kā mācību projektu</p>
+        <div  id="autors" class="nodala" style="display:none">
+            <h2>Par autoru</h2>
+            <p>Spēli izveidoja Start(IT) kursu dalībniece 2021.gadā kā mācību projektu</p>
         </div>
-        </div><!--beidzas saturs-->
-
-
-    </div><!--beidzas Laukums-->
-    
-
+        <hr/>
+        <script>
+        // funkcija, kas atver lapas nodaļu ar indentifikatoru nid un citas daļas aizver
+            function atvert(nid) {
+                var i;
+                var x = document.getElementsByClassName("nodala");
+                for (i = 0; i < x.length; i++) {
+                    x[i].style.display = "none";  
+                }
+                document.getElementById(nid).style.display = "block";  
+                if(nid === "top"){
+                    //te vēlāk būs kods, kas saņems rezultātus no servera un pārādīs tabulā
+                    paradaRezultatus();
+                }
+            }
+         // sākas spēles kods   
+         var vardi=["kaza","pele","māja", "soma", "desa", "lapa", "sols","pods","lupa", "logs", "galds","kalns","skola", "cikls", "rinda", "prece", "klase","pults","klade","kaste","dators","pasaka", "masīvs", "domēns", "gaisma","parole", "kabata","gumija", "sniegs", "vasara" ]; 
+                  var vards; 
+         var sajaukts; 
+         var bsk; 
+         var sekundes; 
+         var skaitaLaiku; 
+        
+         function laiks(){
+             if(sekundes >0){
+                 sekundes--;
+                 document.getElementById("laiks").innerHTML="Spēles laiks " + sekundes +"s "; 
+                 document.getElementById("punkti").innerHTML="Punkti = " + punkti; 
+             }else{
+                 clearInterval(skaitaLaiku); //beidz laika uzskaiti
+                 let saglabat=prompt("Vai vēlies saglabāt savu rezultātu? (j/n)");
+                 if(saglabat === "j"){
+                     //te vēlāk būs kods kas sūtīs rezultātu uz serveri
+                 } 
+                 document.getElementById("atbilde").style="display:none";
+                 document.getElementById("atbilde").value="";
+                 document.getElementById("mini").style="display:none";
+                 document.getElementById("vards").innerHTML="";
+                 atvert("top"); //pāriet uz rezultātu sadaļu
+             }
+         }
+         // funkcija izvēlas random vārdu, to sajauc un parāda
+         function paradaVardu(){
+             let vardaNr=Math.floor(Math.random()*10+(bsk-4)*10); // 2 - cik vārdu ar vienādu garumu
+             vards=vardi[vardaNr];
+             sajaukts=vards;
+             for(let i=0; i<bsk && sajaukts === vards; i++){
+                 let rnd=Math.floor(Math.random()*bsk);
+                 sajaukts=sajaukts.substring(rnd)+sajaukts.substring(0,rnd);
+             }
+             document.getElementById("vards").innerHTML=sajaukts;
+             document.getElementById("atbilde").style="display:block";
+             document.getElementById("mini").style="display:block";
+         }
+         // funkcija nosaka burtu skaitu un sākt spēli
+         function sakums(n){
+             if(n>=4 && n<=6){
+                 bsk=n;
+                 sekundes=40;
+                 punkti=0;
+                 skaitaLaiku=setInterval(laiks,1000);
+                 paradaVardu();
+             }
+         }
+         // funkcija sagatavo lodziņu cita vārda minēšanai'
+         function atminets(){
+             document.getElementById("atbilde").style="background:grey";
+             document.getElementById("atbilde").value="";
+             paradaVardu();
+         }
+         //funkcija pārbauda vai ievadītais vārds sakrīt ar datora iedomāto
+         function parbaude(ievads){
+             if(ievads.length==bsk){
+                 if(ievads===vards){
+                     document.getElementById("atbilde").style="background:green";
+                     setTimeout(atminets,1000); // uz 1 s pārāda zaļu fonu kā zīmi ka vārds uzminēts
+                     punkti++;
+                 }
+             }
+         }
+         //funkcija dinamiski papildinās rezultātu tabulu
+         function paradaRezultatus(){
+             // ja rezultātu bloks jau vienreiz rādīts, to izdzēš
+             if(document.getElementById("rezultati")!= null){
+                 document.getElementById("rezultati").remove();
+             }
+             let rez=document.createElement("div");
+             rez.setAttribute("id", "rezultati");
+             rez.innerHTML="te vēlāk būs rezultāti";
+             document.getElementById("tabula").appendChild(rez);
+             // te vēlāk būs cikls, kas tabulā liks rezultātus
+         }
+        </script>
+    </div>
+ </body>
+</html>
 
 <script>
-    function atver(iedalijums) {
-      var i;
-      var x = document.getElementsByClassName("saturs");
-      for (i = 0; i < x.length; i++) {
-        x[i].style.display = "none";  
-      }
-      document.getElementById(iedalijums).style.display = "block";  
-    }
-
-    let n=document.getElementById("burtu_skaits");
- 
-      setInterval(function(){
-         
-      },1000);
-             
-      function rand_b (vards){
-    for (let i=0; i<10; i++){
-      for(let j = 0; j < 10; j++){
-      let rand1 = Math.floor(Math.random() * vards.length);
-      vards=vards.substring(rand1)+vards.substring(0,rand1);
-    }
-  }
-    return vards;
-  }
-
-
-var alf5 = ["skola", "cikls", "rinda", "prece", "klase"];
-var alf6 = ["dators", "masīvs", "domēns", "gaisma","parole"];
-var alf7 = ["grāmata", "laukums", "zīmulis", "salvete", "cilvēks"];
-var alf8 = ["datorika", "monitors","funkcija", "saraksts", "gredzens"];
-var alf9 =["internets", "procesors", "procedūra", "mikrofons", "programma"];
-//var alf5 = [["skola", "cikls", "rinda", "prece", "klase"],["dators", "masīvs", "domēns", "gaisma","parole"],["grāmata", "laukums", "zīmulis", "salvete", "cilvēks"],["datorika", "monitors","funkcija", "saraksts", "gredzens"],["internets", "procesors", "procedūra", "mikrofons", "programma"]];
- 
-
-  function saktSpeli(n){
-    if (n==5){
-    let klik=0;
-    var rand1 = Math.floor(Math.random() * alf5.length);
- let sajauktais = rand_b(alf5[rand1]);
-          if (document.getElementById("forma1")!=null){
-            document.getElementById("spele").removeChild(document.getElementById("spele").lastChild);
-
-          }
-          let forma = document.createElement("forma");
-          forma.setAttribute("id","forma1")
-          for(let r=0;r<2;r++){
-            
-            let rinda=document.createElement("div");
-            //for(let k=0;k<n;k++){
-              for(let i=0;i<n; i++){
-                //for(let j = 0; j < 5; j++){
-              let poga = document.createElement("input");
-              poga.type="button"
-             poga.setAttribute("id",("r"+r)+i);
-              //poga.innerHTML=vards.charAt(i)   
-             if (r==0) {
-               poga.value = sajauktais.charAt(i);
-             }
-             
-              rinda.appendChild(poga);
-              poga.onclick=function(){
-                let pogaid = poga.id;
-                let rinda = pogaid.charAt(1);
-                if (rinda == 0) {
-
-                  document.getElementById("r1"+klik).title = poga.id;
-                document.getElementById("r1"+klik).value = poga.value;
-               poga.disabled = true;
-               //poga.style.display = "none"
-                klik++;
-                }
-              
-                else {
-                  klik--;
-                  //document.getElementById("r0"+klik).value = poga.value; 
-                  //poga.disabled = false;
-                 
-                  document.getElementById(poga.title).disabled = false;
-                }
-              }
-            
-            }
-            
-            forma.appendChild(rinda);
-          
-          }
-         document.getElementById("spele").appendChild(forma);
-        }
-
-        if (n==6){
-    let klik=0;
-    var rand1 = Math.floor(Math.random() * alf6.length);
- let sajauktais = rand_b(alf6[rand1]);
-          if (document.getElementById("forma1")!=null){
-            document.getElementById("spele").removeChild(document.getElementById("spele").lastChild);
-
-          }
-          let forma = document.createElement("forma");
-          forma.setAttribute("id","forma1")
-          for(let r=0;r<2;r++){
-            
-            let rinda=document.createElement("div");
-            //for(let k=0;k<n;k++){
-              for(let i=0;i<n; i++){
-                //for(let j = 0; j < 5; j++){
-              let poga = document.createElement("input");
-              poga.type="button"
-             poga.setAttribute("id",("r"+r)+i);
-              //poga.innerHTML=vards.charAt(i)   
-             if (r==0) {
-               poga.value = sajauktais.charAt(i);
-             }
-             
-              rinda.appendChild(poga);
-              poga.onclick=function(){
-                let pogaid = poga.id;
-                let rinda = pogaid.charAt(1);
-                if (rinda == 0) {
-
-                  document.getElementById("r1"+klik).title = poga.id;
-                document.getElementById("r1"+klik).value = poga.value;
-               poga.disabled = true;
-               //poga.style.display = "none"
-                klik++;
-                }
-              
-                else {
-                  klik--;
-                  //document.getElementById("r0"+klik).value = poga.value; 
-                  //poga.disabled = false;
-                 
-                  document.getElementById(poga.title).disabled = false;
-                }
-              }
-            
-            }
-            
-            forma.appendChild(rinda);
-          
-          }
-         document.getElementById("spele").appendChild(forma);
-        }
-
-        if (n==7){
-    let klik=0;
-    var rand1 = Math.floor(Math.random() * alf7.length);
- let sajauktais = rand_b(alf7[rand1]);
-          if (document.getElementById("forma1")!=null){
-            document.getElementById("spele").removeChild(document.getElementById("spele").lastChild);
-
-          }
-          let forma = document.createElement("forma");
-          forma.setAttribute("id","forma1")
-          for(let r=0;r<2;r++){
-            
-            let rinda=document.createElement("div");
-            //for(let k=0;k<n;k++){
-              for(let i=0;i<n; i++){
-                //for(let j = 0; j < 5; j++){
-              let poga = document.createElement("input");
-              poga.type="button"
-             poga.setAttribute("id",("r"+r)+i);
-              //poga.innerHTML=vards.charAt(i)   
-             if (r==0) {
-               poga.value = sajauktais.charAt(i);
-             }
-             
-              rinda.appendChild(poga);
-              poga.onclick=function(){
-                let pogaid = poga.id;
-                let rinda = pogaid.charAt(1);
-                if (rinda == 0) {
-
-                  document.getElementById("r1"+klik).title = poga.id;
-                document.getElementById("r1"+klik).value = poga.value;
-               poga.disabled = true;
-               //poga.style.display = "none"
-                klik++;
-                }
-              
-                else {
-                  klik--;
-                  //document.getElementById("r0"+klik).value = poga.value; 
-                  //poga.disabled = false;
-                 
-                  document.getElementById(poga.title).disabled = false;
-                }
-              }
-            
-            }
-            
-            forma.appendChild(rinda);
-          
-          }
-         document.getElementById("spele").appendChild(forma);
-        }
-
-        if (n==8){
-    let klik=0;
-    var rand1 = Math.floor(Math.random() * alf8.length);
- let sajauktais = rand_b(alf8[rand1]);
-          if (document.getElementById("forma1")!=null){
-            document.getElementById("spele").removeChild(document.getElementById("spele").lastChild);
-
-          }
-          let forma = document.createElement("forma");
-          forma.setAttribute("id","forma1")
-          for(let r=0;r<2;r++){
-            
-            let rinda=document.createElement("div");
-            //for(let k=0;k<n;k++){
-              for(let i=0;i<n; i++){
-                //for(let j = 0; j < 5; j++){
-              let poga = document.createElement("input");
-              poga.type="button"
-             poga.setAttribute("id",("r"+r)+i);
-              //poga.innerHTML=vards.charAt(i)   
-             if (r==0) {
-               poga.value = sajauktais.charAt(i);
-             }
-             
-              rinda.appendChild(poga);
-              poga.onclick=function(){
-                let pogaid = poga.id;
-                let rinda = pogaid.charAt(1);
-                if (rinda == 0) {
-
-                  document.getElementById("r1"+klik).title = poga.id;
-                document.getElementById("r1"+klik).value = poga.value;
-               poga.disabled = true;
-               //poga.style.display = "none"
-                klik++;
-                }
-              
-                else {
-                  klik--;
-                  //document.getElementById("r0"+klik).value = poga.value; 
-                  //poga.disabled = false;
-                 
-                  document.getElementById(poga.title).disabled = false;
-                }
-              }
-            
-            }
-            
-            forma.appendChild(rinda);
-          
-          }
-         document.getElementById("spele").appendChild(forma);
-        }
-
-        if (n==9){
-    let klik=0;
-    var rand1 = Math.floor(Math.random() * alf9.length);
- let sajauktais = rand_b(alf9[rand1]);
-          if (document.getElementById("forma1")!=null){
-            document.getElementById("spele").removeChild(document.getElementById("spele").lastChild);
-
-          }
-          let forma = document.createElement("forma");
-          forma.setAttribute("id","forma1")
-          for(let r=0;r<2;r++){
-            
-            let rinda=document.createElement("div");
-            //for(let k=0;k<n;k++){
-              for(let i=0;i<n; i++){
-                //for(let j = 0; j < 5; j++){
-              let poga = document.createElement("input");
-              poga.type="button"
-             poga.setAttribute("id",("r"+r)+i);
-              //poga.innerHTML=vards.charAt(i)   
-             if (r==0) {
-               poga.value = sajauktais.charAt(i);
-             }
-             
-              rinda.appendChild(poga);
-              poga.onclick=function(){
-                let pogaid = poga.id;
-                let rinda = pogaid.charAt(1);
-                if (rinda == 0) {
-
-                  document.getElementById("r1"+klik).title = poga.id;
-                document.getElementById("r1"+klik).value = poga.value;
-               poga.disabled = true;
-               //poga.style.display = "none"
-                klik++;
-                }
-              
-                else {
-                  klik--;
-                  //document.getElementById("r0"+klik).value = poga.value; 
-                  //poga.disabled = false;
-                 
-                  document.getElementById(poga.title).disabled = false;
-                }
-              }
-            
-            }
-            
-            forma.appendChild(rinda);
-          
-          }
-         document.getElementById("spele").appendChild(forma);
-        }
-      }
-
-  
-</script>           
-
-
-
-   
-</body>
-</html>
+/*(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-55449998-1', 'auto');
+ga('send', 'event', 'RunPgm');*/
+</script>
