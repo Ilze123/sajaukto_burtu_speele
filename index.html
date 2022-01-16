@@ -22,7 +22,7 @@
             </div>
           </div>
         </div>
-        <hr/>
+        
         <div id="noteikumi" class="nodala">
             <h2>Spēles noteikumi</h2>
             <p>Lai sāktu spēli, jāievada savs vārds un jāizvēlas burtu skaits vārdiem.</p>
@@ -31,27 +31,44 @@
                 <p>Jo vairāk burtu vārdā, jo vairāk punktu pienākas spēlētājam.</p>
 
         </div>
-        <hr/>
+        
 
         <div id="sakt_speli" class="nodala" style="display:none">
             <h2>Sākt spēli</h2>
             <p>Ievadi savu vārdu un cik burtus gribi minēt!</p>
             <form>
-            <input id="speletajs">
-            <label for="speletajs">Spēlētāja vārds</label>
+            <p><input id="speletajs">
+            <label for="speletajs">Spēlētāja vārds</label></p>
+            <br>
             <input id="skaits" type="number" min="4" max="6">
             <label for="skaits">Burtu skaits</label>
+        
             <input type="button" onclick="sakums(skaits.value)" value="Sākt spēli!">
+        <br>
             <div id="spele">
+            
                 <div id="laiks"> Spēles laiks 40 s</div>
                 <div id="punkti"> Punkti = 0 </div>
+                <br>
+        
                 <div id="vards"></div>
                 <input id="atbilde" style="display:none">
-                <input id="mini" onclick="parbaude(atbilde.value)" value="Pārbaudīt vārdu" style="display:none">
+                <input id="mini" onclick="parbaude(atbilde.value)" value="Pārbaudīt vārdu" style="display:none" type="button">
+              
             </div>
             </form>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
         </div>
-        <hr/>
+        
+        <br>
+        <br>
 
         <div  id="top" class="nodala" style="display:none">
             <h2>Rezultātu TOPS</h2>
@@ -60,13 +77,13 @@
             </table>
          
         </div>
-        <hr/>
+        
 
         <div  id="autors" class="nodala" style="display:none">
             <h2>Par autoru</h2>
             <p>Spēli izveidoja Start(IT) kursu dalībniece 2021.gadā kā mācību projektu</p>
         </div>
-        <hr/>
+        
         <script>
         // funkcija, kas atver lapas nodaļu ar indentifikatoru nid un citas daļas aizver
             function atvert(nid) {
