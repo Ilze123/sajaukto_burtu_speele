@@ -14,7 +14,8 @@
     background-color: #ebc4c4;
 }
 body {
-    background: #923c3c;  
+    background-image: url("burti.jpg");
+
 }
 h1
 {
@@ -35,7 +36,7 @@ li
 display: inline-block;
 
 }
-.top-bar{
+.menu{
     float: center;
     display: block;
     color: #f8f1f1;
@@ -52,11 +53,23 @@ display: inline-block;
    
   }
 
-  #noteikumi {
+ #noteikumi {
     border-style: double;
   }
 #spele{
+
     border-style: double;
+    font-size: 20px; 
+    text-align: center;
+    padding: 10px;
+    width: 150px;
+  height: 50px;  
+  background-color: #f8dfdf;
+   border: 1px solid red;
+float: center;
+}
+.tabula{
+
 }
 
 #tops{
@@ -64,18 +77,37 @@ display: inline-block;
     text-align: center;
 }
 
-.bloks
-{
-   
-    display: inline-block; 
-   background: rgb(195, 191, 211);
-   width: 90px;
-   height: 90px;
-   border: 2px solid rgba(39, 31, 88, 0.308);
+#mini{
+    text-align: center;
+    font-size: 20px;
 }
 .ievaddati{
     text-align: right;
 }
 .tabula{
     text-align: center;
+}
+#skaits{
+    font-size: 20px; 
+
+}
+#speletajs{
+    font-size: 20px;
+    border-style: double;
+    border-radius: 30%;
+    text-align: center;
+    background-color: #f7f477;
+}
+#vards{
+    font-size: 40px; 
+    background-color: #f7f477; 
+    text-align: center;
+    
+}
+#sakt_speli{
+  
+    text-align: center;
+}
+#atbilde{
+    font-size: 40px; 
 }
