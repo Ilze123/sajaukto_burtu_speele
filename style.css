@@ -66,10 +66,7 @@ display: inline-block;
   height: 50px;  
   background-color: #f8dfdf;
    border: 1px solid red;
-float: center;
-}
-.tabula{
-
+    float: center;
 }
 
 #tops{
@@ -105,9 +102,10 @@ float: center;
     
 }
 #sakt_speli{
-  
+    font-size: 20px; 
     text-align: center;
 }
 #atbilde{
-    font-size: 40px; 
+    font-size: 40px;
+    text-align: left;
 }
