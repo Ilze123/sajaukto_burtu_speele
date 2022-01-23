@@ -16,17 +16,17 @@
             </div>
             <div class="menu">
                 <button class="poga" onclick="atvert('noteikumi')">Noteikumi</button>
-                <button class="poga" onclick="atvert('sakt_speli')">Sākt spēli</button>
+                <button class="poga" onclick="atvert('sakt_speli')">Sākt spēli!</button>
                 <button class="poga" onclick="atvert('top')">Spēlētāju TOP</button>
                 <button class="poga" onclick="atvert('autors')">Par autoru</button>
             </div>
           </div>
         </div>
         
-        <div id="noteikumi" class="nodala">
+        <div id="noteikumi" class="nodala" >
             <h2>Spēles noteikumi</h2>
             <p>Lai sāktu spēli, jāievada savs vārds un jāizvēlas burtu skaits vārdiem.</p>
-                <p>Vienas minūtes laikā jāizveido pēc iespējas vairāk vārdu ar peli klikšķinot uz burtu kvadrātiņiem.</p>
+                <p>Vienas minūtes laikā jāizveido pēc iespējas vairāk vārdu no dotajiem burtiem.</p>
                 <p>Spēlē tiek izmantoti tikai lietvārdi vienskaitlī.</p>
                 <p>Jo vairāk burtu vārdā, jo vairāk punktu pienākas spēlētājam.</p>
 
@@ -34,7 +34,7 @@
         
 
         <div id="sakt_speli" class="nodala" style="display:none">
-            <h2>Sākt spēli</h2>
+            <h2>Sākt spēli!</h2>
             <p>Ievadi savu vārdu un cik burtus gribi minēt!</p>
             <form>
             <p><input id="speletajs">
@@ -47,7 +47,7 @@
         <br>
             <div id="spele">
             
-                <div id="laiks"> Spēles laiks 40 s</div>
+                <div id="laiks"> Spēles laiks 60 s</div>
                 <div id="punkti"> Punkti = 0 </div>
                 <br>
         
@@ -111,7 +111,8 @@
                  sekundes--;
                  document.getElementById("laiks").innerHTML="Spēles laiks " + sekundes +"s "; 
                  document.getElementById("punkti").innerHTML="Punkti = " + punkti; 
-             }else{
+             }
+              else{
                  clearInterval(skaitaLaiku); //beidz laika uzskaiti
                  let saglabat=prompt("Vai vēlies saglabāt savu rezultātu? (j/n)");
                  if(saglabat === "j"){
@@ -141,7 +142,7 @@
          function sakums(n){
              if(n>=4 && n<=6){
                  bsk=n;
-                 sekundes=40;
+                 sekundes=60;
                  punkti=0;
                  skaitaLaiku=setInterval(laiks,1000);
                  paradaVardu();
@@ -181,10 +182,10 @@
 </html>
 
 <script>
-/*(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 ga('create', 'UA-55449998-1', 'auto');
-ga('send', 'event', 'RunPgm');*/
+ga('send', 'event', 'RunPgm');
 </script>
