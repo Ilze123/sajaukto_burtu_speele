@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link href="style.css" rel="stylesheet"/>
+  <link href="static/style.css" rel="stylesheet"/>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sajaukto burtu spēle</title>
@@ -43,11 +43,11 @@
             <input id="skaits" type="number" min="4" max="6">
             <label for="skaits">Burtu skaits</label>
         
-            <input type="button" onclick="sakums(skaits.value)" value="Sākt spēli!">
+            <input type="button" onclick="sakums(skaits.value)" value="Sākt spēli!" id="saktspeli">
         <br>
             <div id="spele">
             
-                <div id="laiks"> Spēles laiks 60 s</div>
+                <div id="laiks"> Spēles laiks 30 s</div>
                 <div id="punkti"> Punkti = 0 </div>
                 <br>
         
@@ -66,7 +66,7 @@
         <div  id="top" class="nodala" style="display:none">
             <h2>Rezultātu TOPS</h2>
             <table id="tabula">
-                <tr><th>Spēlētājs</th><th>Rezultāts</th></tr>  
+                <tr><th>Spēlētājs</th><th>Rezultāts</th><th>Burtu skaits</th></tr>  
             </table>
          
         </div>
@@ -87,7 +87,7 @@
                 }
                 document.getElementById(nid).style.display = "block";  
                 if(nid === "top"){
-                    //te vēlāk būs kods, kas saņems rezultātus no servera un pārādīs tabulā
+                  
                     paradaRezultatus();
                 }
             }
@@ -103,14 +103,42 @@
              if(sekundes >0){
                  sekundes--;
                  document.getElementById("laiks").innerHTML="Spēles laiks " + sekundes +"s "; 
-                 document.getElementById("punkti").innerHTML="Punkti = " + punkti; 
+                 
+                 document.getElementById("punkti").innerHTML="Punkti = " + punkti;
              }
               else{
                  clearInterval(skaitaLaiku); //beidz laika uzskaiti
+                 document.getElementById("saktspeli").disabled = false;
                  let saglabat=prompt("Vai vēlies saglabāt savu rezultātu? (j/n)");
                  if(saglabat === "j"){
-                     //te vēlāk būs kods kas sūtīs rezultātu uz serveri
-                 } 
+                     
+    //function rezultati(speletajs, punkti){
+        let burti=document.getElementById("skaits").value;
+        let speletajs=document.getElementById("speletajs").value;
+    let dict={vards:speletajs, punkti:punkti*bsk, burti:burti};
+           
+    console.log(JSON.stringify(dict));
+    fetch('https://BurtuSpeelesServeris.ilzestrode1.repl.co/rezultati', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body:JSON.stringify(dict)
+    })
+      .then(rez => rez.json())
+      .then(data => {
+        atvert("top");
+        //  document.getElementById("tabula").innerHTML = "Rezultātu tabula";
+        // for(let i=0;i<data.length;i++){
+        //       let rinda=document.createElement("div");
+        //       rinda.innerHTML=data[i].vards+"   "+data[i].punkti;
+        //       document.getElementById("tabula").appendChild(rinda);
+        //   }
+         
+      });
+//}
+                 } else{
+                   console.log("else")
+                 }
+
                  document.getElementById("atbilde").style="display:none";
                  document.getElementById("atbilde").value="";
                  document.getElementById("mini").style="display:none";
@@ -135,10 +163,11 @@
          function sakums(n){
              if(n>=4 && n<=6){
                  bsk=n;
-                 sekundes=60;
+                 sekundes=25;
                  punkti=0;
                  skaitaLaiku=setInterval(laiks,1000);
                  paradaVardu();
+                 document.getElementById("saktspeli").disabled = true;
              }
          }
          // funkcija sagatavo lodziņu cita vārda minēšanai'
@@ -152,33 +181,41 @@
              if(ievads.length==bsk){
                  if(ievads===vards){
                      document.getElementById("atbilde").style="background:green";
-                     setTimeout(atminets,1000); // uz 1 s pārāda zaļu fonu kā zīmi ka vārds uzminēts
+                     setTimeout(atminets,1000);
                      punkti++;
                  }
              }
          }
          //funkcija dinamiski papildinās rezultātu tabulu
          function paradaRezultatus(){
-             // ja rezultātu bloks jau vienreiz rādīts, to izdzēš
+             //ja rezultātu bloks jau vienreiz rādīts, to izdzēš
              if(document.getElementById("rezultati")!= null){
                  document.getElementById("rezultati").remove();
              }
              let rez=document.createElement("div");
-             rez.setAttribute("id", "rezultati");
-             rez.innerHTML="te vēlāk būs rezultāti";
+            rez.setAttribute("id", "rezultati");
+            // rez.innerHTML="rezultati";
              document.getElementById("tabula").appendChild(rez);
-             // te vēlāk būs cikls, kas tabulā liks rezultātus
+             //te vēlāk būs cikls, kas tabulā liks rezultātus
+             fetch('https://BurtuSpeelesServeris.ilzestrode1.repl.co/rezultati')
+      .then(rez => rez.json())
+      .then(data => {
+        console.log(data[0]);
+           document.getElementById("tabula").innerHTML = "Rezultātu tabula";
+        for(let i=0;i<data.length;i++){
+              let rinda=document.createElement("div");
+              rinda.innerHTML=data[i].vards+"   "+data[i].punkti+"    "+data[i].burti;
+              document.getElementById("tabula").appendChild(rinda);
+          }
+         
+      });
          }
+         
+
+
         </script>
     </div>
  </body>
 </html>
 
-<script>
-/*(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-ga('create', 'UA-55449998-1', 'auto');
-ga('send', 'event', 'RunPgm');*/
-</script>
+
